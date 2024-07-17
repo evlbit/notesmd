@@ -1,15 +1,16 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/evlbit/notesmd/internal/handlers"
+)
 
 func newRouter() http.Handler {
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /notes", handleGetNotes)
+	notesHandler := handlers.NewNotesHandler()
+	notesHandler.RegisterRoutes(router)
 
 	return router
-}
-
-func handleGetNotes(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("A list of all notes"))
 }
