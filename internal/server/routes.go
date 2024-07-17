@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/evlbit/notesmd/internal/handlers"
+	"github.com/evlbit/notesmd/internal/middleware"
 )
 
 func newRouter() http.Handler {
@@ -12,5 +13,9 @@ func newRouter() http.Handler {
 	notesHandler := handlers.NewNotesHandler()
 	notesHandler.RegisterRoutes(router)
 
-	return router
+	middlewareStack := middleware.CreateStack(
+		middleware.Logging,
+	)
+
+	return middlewareStack(router)
 }
