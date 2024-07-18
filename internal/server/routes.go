@@ -13,6 +13,9 @@ func newRouter() http.Handler {
 	notesHandler := handlers.NewNotesHandler()
 	notesHandler.RegisterRoutes(router)
 
+	usersHandler := handlers.NewUsersHandler()
+	usersHandler.RegisterRoutes(router)
+
 	middlewareStack := middleware.CreateStack(
 		middleware.Logging,
 	)
