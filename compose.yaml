@@ -6,6 +6,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: tester
+      MYSQL_DATABASE: notesmd
   phpmyadmin:
     image: phpmyadmin:5.2.1
     container_name: notesmd-phpmyadmin
