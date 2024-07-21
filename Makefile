@@ -1,10 +1,10 @@
-include .env
+include .env.dev
 
 build:
 	@go build -o bin/notesmd cmd/api/main.go
 
 run: build
-	@./bin/notesmd
+	@./bin/notesmd -env dev
 
 mr-create:
 	@read -p "Migration name: " MIGRATION_NAME; \
@@ -18,3 +18,6 @@ mr-down:
 
 mr-reset:
 	@goose -dir ${MIGRATION_DIR} ${MIGRATION_DRIVER} ${MIGRATION_DBURL} reset
+
+mr-status:
+	@goose -dir ${MIGRATION_DIR} ${MIGRATION_DRIVER} ${MIGRATION_DBURL} status

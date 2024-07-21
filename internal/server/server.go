@@ -1,11 +1,12 @@
 package server
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 )
 
-func StartServer() {
+func StartServer(db *sql.DB) {
 	router := newRouter()
 
 	server := http.Server{
