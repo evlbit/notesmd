@@ -15,18 +15,22 @@ type EnvVars struct {
 	DBName     string
 }
 
-func InitEnv(appEnv string) (*EnvVars, error) {
+var Vars *EnvVars
+
+func InitEnv(appEnv string) error {
 	err := godotenv.Load(fmt.Sprintf(".env.%s", appEnv))
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &EnvVars{
+	Vars = &EnvVars{
 		DBAddress:  getEnv("DB_ADDRESS"),
 		DBUser:     getEnv("DB_USER"),
 		DBPassword: getEnv("DB_PASSWORD"),
 		DBName:     getEnv("DB_NAME"),
-	}, nil
+	}
+
+	return nil
 }
 
 func getEnv(key string) string {

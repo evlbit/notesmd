@@ -19,7 +19,7 @@ func main() {
 		log.Fatal("Environment was not specified")
 	}
 
-	env, err := env.InitEnv(*appEnv)
+	err := env.InitEnv(*appEnv)
 	if err != nil {
 		log.Fatalf("Could not load environment\n%s", err)
 	}
@@ -27,10 +27,10 @@ func main() {
 	log.Println("Successfully load environment")
 
 	db, err := db.NewDB(mysql.Config{
-		User:                 env.DBUser,
-		Passwd:               env.DBPassword,
-		Addr:                 env.DBAddress,
-		DBName:               env.DBName,
+		User:                 env.Vars.DBUser,
+		Passwd:               env.Vars.DBPassword,
+		Addr:                 env.Vars.DBAddress,
+		DBName:               env.Vars.DBName,
 		Net:                  "tcp",
 		AllowNativePasswords: true,
 		ParseTime:            true,
