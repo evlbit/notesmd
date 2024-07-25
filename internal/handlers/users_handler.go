@@ -21,7 +21,7 @@ func (h *UsersHandler) RegisterRoutes(router *http.ServeMux) {
 func (h *UsersHandler) handleRegister(w http.ResponseWriter, r *http.Request) {
 	var payload request.RegisterUserPayload
 	if err := parseJSON(r, &payload); err != nil {
-		writeError(w, http.StatusBadRequest, err)
+		WriteError(w, http.StatusBadRequest, err)
 		return
 	}
 
@@ -33,7 +33,7 @@ func (h *UsersHandler) handleRegister(w http.ResponseWriter, r *http.Request) {
 func (h *UsersHandler) handleLogin(w http.ResponseWriter, r *http.Request) {
 	var payload request.LoginUserPayload
 	if err := parseJSON(r, &payload); err != nil {
-		writeError(w, http.StatusBadRequest, err)
+		WriteError(w, http.StatusBadRequest, err)
 		return
 	}
 

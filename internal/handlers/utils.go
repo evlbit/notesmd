@@ -43,7 +43,7 @@ func writeJSON(w http.ResponseWriter, status int, res any) {
 	}
 }
 
-func writeError(w http.ResponseWriter, status int, err error) {
+func WriteError(w http.ResponseWriter, status int, err error) {
 	writeJSON(w, status, map[string]string{"error": err.Error()})
 }
 
