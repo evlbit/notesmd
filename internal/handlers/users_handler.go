@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/evlbit/notesmd/internal/types/request"
+	"github.com/evlbit/notesmd/internal/types"
 )
 
 type UsersHandler struct {
@@ -19,7 +19,7 @@ func (h *UsersHandler) RegisterRoutes(router *http.ServeMux) {
 }
 
 func (h *UsersHandler) handleRegister(w http.ResponseWriter, r *http.Request) {
-	var payload request.RegisterUserPayload
+	var payload types.RegisterUserPayload
 	if err := parseJSON(r, &payload); err != nil {
 		WriteError(w, http.StatusBadRequest, err)
 		return
@@ -31,7 +31,7 @@ func (h *UsersHandler) handleRegister(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *UsersHandler) handleLogin(w http.ResponseWriter, r *http.Request) {
-	var payload request.LoginUserPayload
+	var payload types.LoginUserPayload
 	if err := parseJSON(r, &payload); err != nil {
 		WriteError(w, http.StatusBadRequest, err)
 		return
